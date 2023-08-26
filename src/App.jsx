@@ -1,13 +1,22 @@
-import Post from "./Post";
+import Post from "./components/Post";
 import "./global.css";
 import Header from "./components/Header";
+
+import styles from "./App.module.css";
+import { Sidebar } from "./components/Sidebar";
 
 function App() {
   return (
     <div>
       <Header />
-      <Post author="Guilherme Wallace" content="esse post esta sendo criado" />
-      <Post author="Bidio Willian" content="esse post esta sendo criado 2" />
+
+      <div className={styles.wrapper}>
+        <Sidebar />
+        <main>
+          <Post />
+          <Post />
+        </main>
+      </div>
     </div>
   );
 }
