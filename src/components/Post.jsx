@@ -17,6 +17,14 @@ const Post = (props) => {
     setNewCommentText(event.target.value);
   };
 
+  const deleteComment = (commentDelete) => {
+    const commentsWithoutDeletedOne = comment.filter((elem) => {
+      return elem !== commentDelete;
+    });
+
+    setComment(commentsWithoutDeletedOne);
+  };
+
   return (
     <article className={styles.post}>
       <header>
@@ -62,7 +70,13 @@ const Post = (props) => {
 
       <div className={styles.commentList}>
         {comment.map((elem, index) => {
-          return <Comment key={elem} content={elem} />;
+          return (
+            <Comment
+              key={elem}
+              content={elem}
+              onDeleteComment={deleteComment}
+            />
+          );
         })}
       </div>
     </article>
