@@ -1,10 +1,27 @@
 import { ThumbsUp, Trash } from "phosphor-react";
 import styles from "./Comment.module.css";
 import Avatar from "./Avatar";
+import { useState } from "react";
 
 export const Comment = ({ content, onDeleteComment }) => {
+  const [likeCount, setLikeCount] = useState(0);
+
   const handlerDeleteComment = () => {
     onDeleteComment(content);
+  };
+
+  const handlerLikeComment = () => {
+    // sempre que eu for fazer a atualização de um state q depende dele mesmo use a segunda forma
+    // setLikeCount(likeCount + 1);
+
+    setLikeCount((state) => {
+      return state + 1;
+    });
+    // aqui eu tambem poderia dar um push ex:
+
+    // setLikeCount((state)=>{
+    //   return [...state, "item_2"]
+    // })
   };
 
   return (
@@ -35,9 +52,9 @@ export const Comment = ({ content, onDeleteComment }) => {
         </div>
 
         <footer>
-          <button>
+          <button onClick={handlerLikeComment}>
             <ThumbsUp />
-            Aplaudir <span>20</span>
+            Aplaudir <span>{likeCount}</span>
           </button>
         </footer>
       </div>
